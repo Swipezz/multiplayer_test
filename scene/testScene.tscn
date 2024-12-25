@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://xha7j2vhy03m"]
+
+[ext_resource type="Texture2D" uid="uid://cgm3ksyx7xkvq" path="res://assets/icon.svg" id="1_i26dx"]
+[ext_resource type="Script" path="res://script/SceneManager.gd" id="1_q50hn"]
+[ext_resource type="PackedScene" uid="uid://w2kcp5wxi2hs" path="res://scene/Player.tscn" id="2_40fo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlpk2"]
+size = Vector2(265.146, 21.2319)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_q50hn")
+PlayerScene = ExtResource("2_40fo4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(559, 583)
+scale = Vector2(6.46331, 0.17052)
+texture = ExtResource("1_i26dx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(559, 583)
+scale = Vector2(3.11527, 1)
+shape = SubResource("RectangleShape2D_jlpk2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(849.5, 155.5)
+rotation = 0.563581
+scale = Vector2(7.16406, 0.695312)
+texture = ExtResource("1_i26dx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(851, 153.484)
+rotation = 0.563581
+scale = Vector2(3.48457, -4.75851)
+shape = SubResource("RectangleShape2D_jlpk2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-1078.36, 537.913)
+scale = Vector2(20.135, 0.17052)
+texture = ExtResource("1_i26dx")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1078.36, 537.913)
+scale = Vector2(9.70491, 1)
+shape = SubResource("RectangleShape2D_jlpk2")
+
+[node name="SpawnLocations" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(858, 556)
+
+[node name="1" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+position = Vector2(48, 508)

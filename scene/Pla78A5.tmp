@@ -1,0 +1,155 @@
+[gd_scene load_steps=22 format=3 uid="uid://w2kcp5wxi2hs"]
+
+[ext_resource type="Script" path="res://script/player.gd" id="1_6k0bv"]
+[ext_resource type="Texture2D" uid="uid://cx2b6xcwf2dy5" path="res://assets/Main Character - Male - Full spritesheet - No Guide.png" id="1_odds7"]
+[ext_resource type="PackedScene" uid="uid://jpjnn1jxug6x" path="res://scene/Bullet.tscn" id="2_h8et0"]
+[ext_resource type="Texture2D" uid="uid://orkn8q0nd5sf" path="res://assets/Famas.png" id="2_nsfr5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i8i4"]
+atlas = ExtResource("1_odds7")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwo6w"]
+atlas = ExtResource("1_odds7")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp2fg"]
+atlas = ExtResource("1_odds7")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q668m"]
+atlas = ExtResource("1_odds7")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymuea"]
+atlas = ExtResource("1_odds7")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkwlb"]
+atlas = ExtResource("1_odds7")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhmny"]
+atlas = ExtResource("1_odds7")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrwcf"]
+atlas = ExtResource("1_odds7")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcvgm"]
+atlas = ExtResource("1_odds7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csbum"]
+atlas = ExtResource("1_odds7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrc84"]
+atlas = ExtResource("1_odds7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhegv"]
+atlas = ExtResource("1_odds7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j10v2"]
+atlas = ExtResource("1_odds7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ar63"]
+atlas = ExtResource("1_odds7")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20prn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i8i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwo6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp2fg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q668m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymuea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkwlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhmny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrwcf")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcvgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_csbum")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrc84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhegv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j10v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ar63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7t2s"]
+size = Vector2(27, 31.5)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a5nc3"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_6k0bv")
+Bullet = ExtResource("2_h8et0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(9.53674e-07, -28)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_20prn")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_u7t2s")
+
+[node name="GunRotation" type="Node2D" parent="."]
+position = Vector2(0, -17)
+
+[node name="Famas" type="Sprite2D" parent="GunRotation"]
+texture_filter = 1
+position = Vector2(25, 1)
+scale = Vector2(0.244792, 0.244792)
+texture = ExtResource("2_nsfr5")
+
+[node name="BulletSpawn" type="Node2D" parent="GunRotation"]
+position = Vector2(36, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_a5nc3")
