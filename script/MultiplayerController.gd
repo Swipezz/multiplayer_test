@@ -1,7 +1,10 @@
 extends Control
 
-@export var Addr = "Swipez-59818.portmap.host"
-@export var Port = 59818
+@export var ServerAddr = "localhost"
+@export var ServerPort = 67
+
+@export var ClientAddr = "Swipez-59818.portmap.host"
+@export var ClientPort = 59818
 var peer
 
 # Called when the node enters the scene tree for the first time.
@@ -50,7 +53,7 @@ func startGame():
 
 func hostGame():
 	peer = ENetMultiplayerPeer.new()
-	var err = peer.create_server(Port, 2)
+	var err = peer.create_server(ServerPort, 2)
 	if err != OK:
 		print("Cannot host: " + str(err))
 		return
@@ -65,12 +68,12 @@ func _on_host_button_down() -> void:
 	pass # Replace with function body.
 
 func _on_join_button_down() -> void:
-	print("Attempting to connect to:", Addr, ":", Port)
+	print("Attempting to connect to:", ClientAddr, ":", ClientPort)
 	peer = ENetMultiplayerPeer.new()
-	if peer.create_client(Addr, Port) != OK:
-		print("Failed to connect to server at:", Addr, ":", Port)
+	if peer.create_client(ClientAddr, ClientPort) != OK:
+		print("Failed to connect to server at:", ClientAddr, ":", ClientPort)
 	else:
-		print("Connected to server at:", Addr, ":", Port)
+		print("Connected to server at:", ClientAddr, ":", ClientPort)
 	peer.host.compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
 	pass # Replace with function body.
